@@ -1,15 +1,35 @@
-## Put comments here that give an overall description of what your
-## functions do
+## Code should be written clearly enough where comments are not needed.
+## Comments are an anti-pattern.
+## That being said, the assignment calls for comments...
 
-## Write a short comment describing this function
-
+## This function returns a list with a functions that has certain getter
+## and setter functions.
 makeCacheMatrix <- function(x = matrix()) {
-
+  inverseMatrix <- NULL
+  set <- function(y) {
+          x <<- y
+          inverseMatrix <<- NULL
+  }
+  get <- function() x
+  setInverse <- function(inverse) inverseMatrix <<- inverse
+  getInverse <- function() inverseMatrix
+  list(set = set, get = get,
+        setInverse = setInverse,
+        getInverse = getInverse)
 }
 
-
-## Write a short comment describing this function
-
+## This function takes the makeCacheMatrix function and checks to see
+## if the inverseMatrix has been cached. If not, then it gets and sets
+## the inverse.
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+  inverseMatrix <- x$getInverse()
+  if(!is.null(inverseMatrix)) {
+          message("getting cached data")
+          return(inverseMarix)
+  }
+  data <- x$get()
+  inverseMatrix <- solve(data)
+  x$setInverse(inverseMatrix)
+  inverseMatrix
+
 }
